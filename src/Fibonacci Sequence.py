@@ -1,82 +1,73 @@
-import time
-# def matrix_multiply(A, B):
-#
-#     result = [[0, 0], [0, 0]]
-#     for i in range(2):
-#         for j in range(2):
-#             for k in range(2):
-#                 result[i][j] += A[i][k] * B[k][j]
-#     return result
-#
-#
-# def matrix_power(matrix, n):
-#     result = [[1, 0], [0, 1]]
-#     while n > 0:
-#         if n & 1:
-#             result = matrix_multiply(result, matrix)
-#         matrix = matrix_multiply(matrix, matrix)
-#         n >>= 1
-#     return result
-#
-#
-# def fibonacci(n):
-#
-#     if n == 0:
-#         return 0
-#     if n == 1:
-#         return 1
-#
-#
-#     fib_matrix = [[1, 1],
-#                   [1, 0]]
-#
-#
-#     result_matrix = matrix_power(fib_matrix, n - 1)
-#
-#
-#     return result_matrix[0][0]
-#
-#
-# n = int(input())
-# print(fibonacci(n)%(10**9+7))
-MOD = 1000000007
+#include <iostream>
+#include <vector>
 
+using namespace std;
 
-def mat_mult(A, B):
-    return [
-        [(A[0][0] * B[0][0] + A[0][1] * B[1][0]) % MOD,
-         (A[0][0] * B[0][1] + A[0][1] * B[1][1]) % MOD],
-        [(A[1][0] * B[0][0] + A[1][1] * B[1][0]) % MOD,
-         (A[1][0] * B[0][1] + A[1][1] * B[1][1]) % MOD]
-    ]
+const int MOD = 1000000007;
 
+vector<vector<int>> matrix(int r, int c) {
+    return vector<vector<int>>(r, vector<int>(c, 0));
+}
 
-def mat_pow(A, n):
-    result = [[1, 0], [0, 1]]  # Identity matrix
-    base = A
+vector<vector<int>> mul(const vector<vector<int>>& a, const vector<vector<int>>& b) {
+    int n = a.size(), m = b.size(), k = b[0].size();
+    vector<vector<int>> ret = matrix(n, k);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < k; j++) {
+            for (int t = 0; t < m; t++) {
+                ret[i][j] = (ret[i][j] + (1LL * a[i][t] * b[t][j]) % MOD) % MOD;
+            }
+        }
+    }
+    return ret;
+}
 
-    while n > 0:
-        if n & 1:
-            result = mat_mult(result, base)
-        base = mat_mult(base, base)
-        n >>= 1
+vector<vector<int>> mat_pow(vector<vector<int>> mat, int power) {
+    int n = mat.size();
+    vector<vector<int>> ret = matrix(n, n);
+    for (int i = 0; i < n; i++) {
+        ret[i][i] = 1;
+    }
+    for (int bit = 0; bit < 32; bit++) {
+        if ((power >> bit) & 1) {
+            ret = mul(ret, mat);
+        }
+        mat = mul(mat, mat);
+    }
+    return ret;
+}
 
-    return result
+int main() {
+    string n;
+    cin >> n;
 
+    if (n == "0") {
+        cout << 0 << endl;
+    } else if (n == "1") {
+        cout << 1 << endl;
+    } else {
+        vector<vector<int>> ST = {{0, 1}};
+        vector<vector<int>> MUL = {{1, 1}, {1, 0}};
+        vector<vector<int>> finalMul = {{1, 0}, {0, 1}};
+        vector<vector<int>> pow_mat = MUL;
 
-def fibonacci(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
+        for (int i = n.size() - 1; i >= 0; i--) {
+            int v = n[i] - '0';
+            for (int j = 0; j < v; j++) {
+                finalMul = mul(finalMul, pow_mat);
+            }
 
-    F = [[1, 1], [1, 0]]
+            vector<vector<int>> newPow = {{1, 0}, {0, 1}};
+            for (int j = 0; j < 10; j++) {
+                newPow = mul(newPow, pow_mat);
+            }
 
-    result_matrix = mat_pow(F, n - 1)
+            pow_mat = newPow;
+        }
 
-    return result_matrix[0][0]
+        vector<vector<int>> ans = mul(ST, finalMul);
+        cout << ans[0][0] << endl;
+    }
 
-
-# Input
-n = int(input())
-print(fibonacci(n))
+    return 0;
+}
