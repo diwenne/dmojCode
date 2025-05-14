@@ -1,0 +1,157 @@
+# print(" * * *")
+# print("*     *")
+# print("*     *")
+# print("*     *")
+# print(" * * *")
+# print("*     *")
+# print("*     *")
+# print("*     *")
+# print(" * * *")
+#
+#
+# print(" * * *")
+# print("*", end="")
+# print("     *")
+# print("*", end="")
+# print("     *")
+# print()
+
+number = int(input())
+if number == 0:
+    print(" * * *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print("")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print(" * * *")
+if number == 1:
+    print("")
+    print("      *")
+    print("      *")
+    print("      *")
+    print("")
+    print("      *")
+    print("      *")
+    print("      *")
+    print("")
+if number == 2:
+    print(" * * *")
+    print("      *")
+    print("      *")
+    print("      *")
+    print(" * * *")
+    print("*")
+    print("*")
+    print("*")
+    print(" * * *")
+if number == 3:
+    print(" * * *")
+    print("      *")
+    print("      *")
+    print("      *")
+    print(" * * *")
+    print("      *")
+    print("      *")
+    print("      *")
+    print(" * * *")
+if number == 4:
+    print("")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print(" * * *")
+    print("      *")
+    print("      *")
+    print("      *")
+    print("")
+if number == 5:
+    print(" * * *")
+    print("*")
+    print("*")
+    print("*")
+    print(" * * *")
+    print("      *")
+    print("      *")
+    print("      *")
+    print(" * * *")
+if number == 6:
+    print(" * * *")
+    print("*")
+    print("*")
+    print("*")
+    print(" * * *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print(" * * *")
+if number == 7:
+    print(" * * *")
+    print("      *")
+    print("      *")
+    print("      *")
+    print("")
+    print("      *")
+    print("      *")
+    print("      *")
+    print("")
+if number == 8:
+    print(" * * *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print(" * * *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print(" * * *")
+if number == 9:
+    print(" * * *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print("*", end="")
+    print("     *")
+    print(" * * *")
+    print("      *")
+    print("      *")
+    print("      *")
+    print(" * * *")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
